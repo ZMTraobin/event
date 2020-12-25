@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.event.repository.EventRepository">
+    <resultMap id="resultMap" type="com.event.domain.EventInfo">
+        <id column="e_id" property="eId"/>
+        <result column="e_name" property="eName"/>
+        <result column="remark" property="remark"/>
+        <result column="label" property="label"/>
+        <result column="back_color" property="backColor"/>
+        <result column="back_img" property="backImg"/>
+        <result column="font_color" property="fontColor"/>
+        <result column="font_size" property="fontSize"/>
+        <result column="list_style" property="listStyle"/>
+        <result column="remind_type" property="remindType"/>
+        <result column="u_id" property="uId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="column">
+        e_id,e_name,remark,label,back_color,back_img,font_color,font_size,list_style,remind_type,u_id,create_time
+    </sql>
+
+    <insert id="addEvent" parameterType="com.event.domain.EventInfo">
+        insert into event (e_name,remark,label,back_color,back_img,font_color,font_size,list_style,remind_type,u_id,create_time)
+        values (#{eName},#{remark},#{label},#{backColor},#{backImg},#{fontColor},#{fontSize},#{listStyle}, #{remindType},#{uId},now())
+    </insert>
+
+    <update id="modifyEvent" parameterType="com.event.domain.EventInfo">
+        update event set
+        e_name=#{eName},
+        remark=#{remark},
+        label=#{label},
+        back_color=#{backColor},
+        back_img=#{backImg},
+        font_color=#{fontColor},
+        font_size=#{fontSize},
+        list_style=#{listStyle},
+        remind_type=#{remindType},
+        u_id=#{uId},
+        create_time=#{createTime} where e_id=#{eId}
+    </update>
+
+    <select id="findEvents" resultMap="resultMap">
+        select <include refid="column"/> from event where label=#{label};
+    </select>
+
+    <delete id="remove" parameterType="com.event.domain.EventInfo">
+        delete from event where e_id=#{eId}
+    </delete>
+
+</mapper>

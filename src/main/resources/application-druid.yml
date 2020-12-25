@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    # 数据库驱动：
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据源名称
+    name: defaultDataSource
+    # 数据库连接地址
+    url: jdbc:mysql://49.233.54.55:3306/my_data?serverTimezone=UTC
+    username: root
+    password: root

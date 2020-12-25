@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.event.repository.UserRepository">
+
+    <resultMap id="resultMap" type="com.event.domain.UserInfo">
+        <id property="uId" column="u_id"/>
+        <result property="uName" column="u_name"/>
+        <result property="uLoginName" column="u_login_name"/>
+        <result property="uPwd" column="u_pwd"/>
+        <result property="uIdcard" column="u_idcard"/>
+        <result property="uSex" column="u_sex"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="column">u_id,u_name,u_login_name,u_pwd,u_idcard,u_sex,remark,create_time</sql>
+
+    <insert id="register" parameterType="com.event.domain.UserInfo">
+        insert into user (u_name,u_login_name,u_pwd,u_idcard,u_sex,remark,create_time) values (#{uName},#{uLoginName},#{uPwd},#{uIdcard},#{uSex},#{remark},now());
+    </insert>
+
+    <select id="login" parameterType="com.event.domain.UserInfo" resultType="int">
+        select count(u_id) from user where u_login_name=#{uLoginName} and u_pwd=#{uPwd};
+    </select>
+
+
+</mapper>
