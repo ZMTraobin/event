@@ -11,10 +11,9 @@ import java.io.IOException;
  * author:RaoB
  * date:2020/12/25 0025
  */
-@Component
 public class FastDfsApiOpr {
 
-    private static String CONFIG_FILENAME = FastDfsApiOpr.class.getClassLoader().getResource("fastdfs-client.properties").getFile();
+   public static String CONFIG_FILENAME = FastDfsApiOpr.class.getClassLoader().getResource("fastdfs-client.properties").getFile().substring(1);
 
     public static String upload(byte[] file, String extName) {
         try {
@@ -41,5 +40,6 @@ public class FastDfsApiOpr {
         return null;
 
     }
+
 
 }
