@@ -1,5 +1,6 @@
 package com.event.domain;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -8,8 +9,11 @@ import java.util.Date;
  */
 public class UserInfo {
 
+    @NotNull(message = "用户id不可为空")
     private int uId;
+    @NotNull(message = "用户名不可为空")
     private String uName;
+    @NotNull(message = "用户登录名不可为空")
     private String uLoginName;
     private String uPwd;
     private String uIdcard;

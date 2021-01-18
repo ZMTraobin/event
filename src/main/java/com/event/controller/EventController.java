@@ -27,7 +27,7 @@ public class EventController {
         return eventService.modifyEvent(eventInfo);
     }
     @RequestMapping("findEvents")
-    public AjaxResult findEvents(@RequestBody EventInfo eventInfo){
+    public AjaxResult findEvents(EventInfo eventInfo){
         return eventService.findEvents(eventInfo);
     }
     @RequestMapping("remove")

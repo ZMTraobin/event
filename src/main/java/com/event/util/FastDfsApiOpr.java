@@ -1,5 +1,6 @@
 package com.event.util;
 
+import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
 import org.csource.common.MyException;
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.*;
@@ -11,13 +12,14 @@ import java.io.IOException;
  * author:RaoB
  * date:2020/12/25 0025
  */
+@Component
 public class FastDfsApiOpr {
+    public static String CONFIG_FILENAME = FastDfsApiOpr.class.getClassLoader().getResource("fastdfs-client.properties").getFile().substring(1);
 
-   public static String CONFIG_FILENAME = FastDfsApiOpr.class.getClassLoader().getResource("fastdfs-client.properties").getFile().substring(1);
 
     public static String upload(byte[] file, String extName) {
         try {
-            ClientGlobal.init(CONFIG_FILENAME);
+
             TrackerClient trackerClient = new TrackerClient();
             TrackerServer trackerServer = trackerClient.getTrackerServer();
             StorageServer storageServer = null;

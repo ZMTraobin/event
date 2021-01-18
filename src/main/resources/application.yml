@@ -1,32 +1,16 @@
-#项目信息
-Event:
-  name: Raobin
-  version: 1.0.0
-  copyrightYear: 2020-12-25
-#服务配置
-server:
-  #端口
-  port: 80
-  servlet:
-    #上下文根
-    context-path: /
-  tomcat:
-    #tomcat的url编码
-    uri-encoding: utf-8
-    #工作线程最大设置300
-    threads:
-      max: 300
-      #启动初始化工作线程30
-      min-spare: 30
-
 spring:
-  profiles:
-    #数据库配置文件加载
-    active: druid
-mybatis:
-  #配置映射文件地址,加载所有的mapper.xml文件
-  mapper-locations: classpath*:mapper/**/*Mapper.xml
-  #配置mybatis全局配置
-  config-location: classpath:mapper/mybatis-config.xml
-  #搜索指定包的别名
-  type-aliases-package: com.event
+  application:
+    name: event
+nacos:
+  config:
+    group: event
+    namespace: 2ee6c5ee-a2d2-474e-8686-56fad0ff0632
+    server-addr: 49.233.54.55:8848
+    auto-refresh: true
+    bootstrap:
+      enable: true
+      log-enable: true
+    type: yaml
+    #data-id: application
+    data-ids: application-druid, application
+
